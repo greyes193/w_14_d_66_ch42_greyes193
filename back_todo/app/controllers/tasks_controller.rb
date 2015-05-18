@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-	def index
+	def list
 		task = nil
 		if params[:category].nil?
 			task = Task.all
@@ -8,7 +8,7 @@ class TasksController < ApplicationController
 		end
 		render json: task		
 	end
-	def create
+	def new
 		task = Task.new(permit)
 		if task.valid? 
 			task.save
@@ -28,7 +28,7 @@ class TasksController < ApplicationController
 		end
 
 	end
-	def destroy
+	def delete
 		valid =  Task.exists?((params[:id].to_i))
 		if valid
 			task = Task.find((params[:id].to_i))
