@@ -53,7 +53,12 @@ class TasksController < ApplicationController
 	def finish
 		valid = Task.exists?(params[:id].to_i)
 		if valid 
-			status = {"status" => "done"}
+			task = Task.find((params[:id].to_i))
+			if task{"status"} == "done"
+				status = {"status" => "undone"}
+			else
+				status = {"status" => "done"}
+			end
 			task = Task.update(params[:id], status)
 			render json: task
 		else
@@ -67,7 +72,7 @@ class TasksController < ApplicationController
 				task = Task.where("status" => "done")
 				render json: task		
 			when "pending"
-				task = Task.where("status" => "pending")
+				task = Task.where("status" => "undone")
 				render json: task	
 			else
 				render json: {"Error" => "El estatus no existe"}
