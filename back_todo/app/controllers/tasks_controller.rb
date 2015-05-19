@@ -17,7 +17,6 @@ class TasksController < ApplicationController
 			render json: task.errors
 		end
 	end
-
 	def show
 		valid = Task.exists?((params[:id].to_i))
 		if valid
@@ -38,7 +37,6 @@ class TasksController < ApplicationController
 			render json: {"Error" => "Error 404 La Tarea no existe"}
 		end
 	end
-
 	def update
 		valid = Task.exists?(params[:id].to_i)
 		if valid
@@ -49,7 +47,6 @@ class TasksController < ApplicationController
 			render json: {"Error" => "Error 404 la tarea no existe"}
 		end
 	end
-
 	def finish
 		valid = Task.exists?(params[:id].to_i)
 		if valid 
@@ -77,9 +74,7 @@ class TasksController < ApplicationController
 			else
 				render json: {"Error" => "El estatus no existe"}
 		end
-				
 	end
-
 	private
 		def permit
 			params.permit(:title, :date, :status, :priority, :category_id)
