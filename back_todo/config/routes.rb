@@ -14,6 +14,12 @@ Rails.application.routes.draw do
   delete 'tasks/delete/:id' => 'tasks#delete'
   put 'tasks/:id/finish' => 'tasks#finish'
   get 'tasks/status_list/:status' => 'tasks#status_list'
+
+  post 'categories/new' => 'categories#new'
+  get 'categories' => 'categories#list'
+  get 'categories/:id' => 'categories#show'
+  put 'categories/update/:id' => 'categories#update'
+  delete 'categories/delete/:id' => 'categories#delete'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
